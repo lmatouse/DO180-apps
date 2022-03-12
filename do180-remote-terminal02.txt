@@ -1,0 +1,143 @@
+[student@workstation ~]$ sudo ps -ef | grep "sleep 1000"
+root       16100   16059  0 03:04 pts/0    00:00:00 /usr/bin/coreutils --coreutils-prog-shebang=sleep /usr/bin/sleep 1000
+student    16149   16103  0 03:04 pts/1    00:00:00 grep --color=auto sleep 1000
+[student@workstation ~]$ sudo ps -ef | grep "sleep 2000" | grep -v grep
+root       16352   16322  0 03:05 pts/0    00:00:00 /usr/bin/coreutils --coreutils-prog-shebang=sleep /usr/bin/sleep 2000
+[student@workstation ~]$ sudo ps -ef | grep "sleep 2000" | grep -v grep
+root       16552   16530  0 03:06 pts/0    00:00:00 /usr/bin/coreutils --coreutils-prog-shebang=sleep /usr/bin/sleep 2000
+[student@workstation ~]$ sudo ps -ef | grep "sleep 2000" | grep -v grep
+root       16755   16733  0 03:07 pts/0    00:00:00 /usr/bin/coreutils --coreutils-prog-shebang=sleep /usr/bin/sleep 2000
+[student@workstation ~]$ sudo ps -ef | grep "sleep 3000" | grep -v grep
+root       16975   16931  0 03:09 pts/0    00:00:00 /usr/bin/coreutils --coreutils-prog-shebang=sleep /usr/bin/sleep 3000
+[student@workstation ~]$ sudo ps -ef | grep "sleep 1000"
+root       17463   17441  0 03:34 pts/0    00:00:00 /usr/bin/coreutils --coreutils-prog-shebang=sleep /usr/bin/sleep 1000
+student    17466   16103  0 03:34 pts/1    00:00:00 grep --color=auto sleep 1000
+[student@workstation ~]$ sudo ps -ef | grep "sleep 2000" | grep -v grep
+student    17636   17614  0 03:35 pts/0    00:00:00 /usr/bin/coreutils --coreutils-prog-shebang=sleep /usr/bin/sleep 2000
+[student@workstation ~]$ curl http:/localhost:8080
+curl: (56) Recv failure: Connection reset by peer
+[student@workstation ~]$ curl http:/localhost:80
+curl: (7) Failed to connect to localhost port 80: Connection refused
+[student@workstation ~]$ curl https:/localhost:8080
+curl: (35) OpenSSL SSL_connect: SSL_ERROR_SYSCALL in connection to localhost:8080 
+[student@workstation ~]$ sudo ps auxf | grep 80880
+student    17896  0.0  0.0 221900  1080 pts/1    S+   03:42   0:00  |       \_ grep --color=auto 80880
+[student@workstation ~]$ sudo ps auxf | grep 8080
+student    17787 12.4  1.7 935212 100944 pts/0   Sl+  03:41   0:07  |   |   \_ podman run --name httpd-basic -p 8080:80 -ti quay.io/redhattraining/httpd-parent:2.4 /bin/bash
+student    17906  0.0  0.0 221900  1084 pts/1    S+   03:42   0:00  |       \_ grep --color=auto 8080
+[student@workstation ~]$ sudo netstat -atn | grep 8080
+tcp        0      0 0.0.0.0:8080            0.0.0.0:*               LISTEN     
+[student@workstation ~]$ sudo netstat -atni | grep 8080
+[student@workstation ~]$ sudo netstat -atne | grep 8080
+tcp        0      0 0.0.0.0:8080            0.0.0.0:*               LISTEN      1000       134093    
+[student@workstation ~]$ sudo netstat -atne 
+Active Internet connections (servers and established)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       User       Inode     
+tcp        0      0 0.0.0.0:5355            0.0.0.0:*               LISTEN      193        31856     
+tcp        0      0 0.0.0.0:111             0.0.0.0:*               LISTEN      0          21133     
+tcp        0      0 0.0.0.0:8080            0.0.0.0:*               LISTEN      1000       134093    
+tcp        0      0 192.168.122.1:53        0.0.0.0:*               LISTEN      0          33933     
+tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      0          28528     
+tcp        0      0 127.0.0.1:631           0.0.0.0:*               LISTEN      0          44790     
+tcp6       0      0 :::5355                 :::*                    LISTEN      193        31859     
+tcp6       0      0 :::111                  :::*                    LISTEN      0          21135     
+tcp6       0      0 :::22                   :::*                    LISTEN      0          29209     
+tcp6       0      0 ::1:631                 :::*                    LISTEN      0          44789     
+[student@workstation ~]$ sudo netstat -atno
+Active Internet connections (servers and established)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       Timer
+tcp        0      0 0.0.0.0:5355            0.0.0.0:*               LISTEN      off (0.00/0/0)
+tcp        0      0 0.0.0.0:111             0.0.0.0:*               LISTEN      off (0.00/0/0)
+tcp        0      0 0.0.0.0:8080            0.0.0.0:*               LISTEN      off (0.00/0/0)
+tcp        0      0 192.168.122.1:53        0.0.0.0:*               LISTEN      off (0.00/0/0)
+tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      off (0.00/0/0)
+tcp        0      0 127.0.0.1:631           0.0.0.0:*               LISTEN      off (0.00/0/0)
+tcp6       0      0 :::5355                 :::*                    LISTEN      off (0.00/0/0)
+tcp6       0      0 :::111                  :::*                    LISTEN      off (0.00/0/0)
+tcp6       0      0 :::22                   :::*                    LISTEN      off (0.00/0/0)
+tcp6       0      0 ::1:631                 :::*                    LISTEN      off (0.00/0/0)
+[student@workstation ~]$ sudo netstat -atnp
+Active Internet connections (servers and established)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name    
+tcp        0      0 0.0.0.0:5355            0.0.0.0:*               LISTEN      1267/systemd-resolv 
+tcp        0      0 0.0.0.0:111             0.0.0.0:*               LISTEN      1/systemd           
+tcp        0      0 0.0.0.0:8080            0.0.0.0:*               LISTEN      17843/slirp4netns   
+tcp        0      0 192.168.122.1:53        0.0.0.0:*               LISTEN      1452/dnsmasq        
+tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      1161/sshd           
+tcp        0      0 127.0.0.1:631           0.0.0.0:*               LISTEN      2776/cupsd          
+tcp6       0      0 :::5355                 :::*                    LISTEN      1267/systemd-resolv 
+tcp6       0      0 :::111                  :::*                    LISTEN      1/systemd           
+tcp6       0      0 :::22                   :::*                    LISTEN      1161/sshd           
+tcp6       0      0 ::1:631                 :::*                    LISTEN      2776/cupsd          
+[student@workstation ~]$ sudo ps auxf | grep 17843
+student    17843  0.0  0.0  41276  5368 pts/0    S    03:41   0:00  |   |       \_ /usr/bin/slirp4netns --api-socket /run/user/1000/libpod/tmp/8b8f9aeb6aa9e06c21f39411f182fedf90a9df4574aa45fe077ce4d1ce0b45f3.net --disable-host-loopback --mtu 65520 --enable-sandbox -c -e 3 -r 4 --netns-type=path /run/user/1000/netns/cni-7a41ee1e-d0c6-7cf4-c377-fa78a2968109 tap0
+student    17992  0.0  0.0 221900   984 pts/1    S+   03:43   0:00  |       \_ grep --color=auto 17843
+[student@workstation ~]$ sudo ps auxf | grep 8080
+student    18500  0.0  0.0 221900   980 pts/1    S+   03:46   0:00  |       \_ grep --color=auto 8080
+[student@workstation ~]$ sudo ps auxf | grep 8080
+student    18602  0.0  0.0 221900   968 pts/1    S+   03:48   0:00  |       \_ grep --color=auto 8080
+[student@workstation ~]$ sudo ps auxf | grep 8080
+student    18651  0.0  0.0 221900  1056 pts/1    S+   03:48   0:00  |       \_ grep --color=auto 8080
+[student@workstation ~]$ sudo netstat -atnp
+Active Internet connections (servers and established)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name    
+tcp        0      0 0.0.0.0:5355            0.0.0.0:*               LISTEN      1267/systemd-resolv 
+tcp        0      0 0.0.0.0:111             0.0.0.0:*               LISTEN      1/systemd           
+tcp        0      0 0.0.0.0:8080            0.0.0.0:*               LISTEN      18567/slirp4netns   
+tcp        0      0 192.168.122.1:53        0.0.0.0:*               LISTEN      1452/dnsmasq        
+tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      1161/sshd           
+tcp        0      0 127.0.0.1:631           0.0.0.0:*               LISTEN      2776/cupsd          
+tcp6       0      0 :::5355                 :::*                    LISTEN      1267/systemd-resolv 
+tcp6       0      0 :::111                  :::*                    LISTEN      1/systemd           
+tcp6       0      0 :::22                   :::*                    LISTEN      1161/sshd           
+tcp6       0      0 ::1:631                 :::*                    LISTEN      2776/cupsd          
+[student@workstation ~]$ tel
+telinit  telnet   
+[student@workstation ~]$ telnet 127.0.0.1 8080
+Trying 127.0.0.1...
+Connected to 127.0.0.1.
+Escape character is '^]'.
+Connection closed by foreign host.
+[student@workstation ~]$ ^C
+[student@workstation ~]$ 
+[student@workstation ~]$ curl http://localhost:8080
+curl: (56) Recv failure: Connection reset by peer
+[student@workstation ~]$ curl http://localhost:8080
+Hello from the httpd-parent container!
+[student@workstation ~]$ curl http://localhost:8080
+Hello World
+[student@workstation ~]$ lab container-review grade
+
+Grading the student's work for the Lab: Creating Containerized Services
+
+ · The httpd container image was pulled........................  PASS
+ · The container was started with the correct name.............  PASS
+ · The container was started with the correct image............  PASS
+ · Check the content of index.html.............................  PASS
+
+[student@workstation ~]$ lab container-review finish
+
+Completing the Lab: Creating Containerized Services
+
+ · Removing "httpd-basic" container............................  SUCCESS
+ · Removing "redhattraining/httpd-parent:2.4" image............  SUCCESS
+[student@workstation ~]$ podman login registry.redhat.io
+Authenticating with existing credentials...
+Existing credentials are valid. Already logged in to registry.redhat.io
+[student@workstation ~]$ pwd
+/home/student
+[student@workstation ~]$ curl http://127.0.0.1:10080
+Hello from the httpd-parent container!
+[student@workstation ~]$ 
+
+
+
+
+
+
+
+
+
+
+
+
